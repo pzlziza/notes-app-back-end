@@ -16,6 +16,7 @@ const addNoteHandler = (request, h) => {
     createdAt,
     updatedAt,
   };
+
   notes.push(newNote);
 
   const isSuccess = notes.filter((note) => note.id === id).length > 0;
@@ -28,6 +29,7 @@ const addNoteHandler = (request, h) => {
         noteId: id,
       },
     });
+    response.header("Access-Control-Allow-Origin", "*");
     response.code(201);
     return response;
   }
@@ -38,5 +40,4 @@ const addNoteHandler = (request, h) => {
   response.code(500);
   return response;
 };
-
 module.exports = { addNoteHandler };
